@@ -1,0 +1,13 @@
+*,
+body {
+  padding: 0;
+  margin: 0; }
+
+:root {
+  --color-primary: #3498db; }
+
+:root {
+  font-size: 62.5%; }
+
+h1 {
+  color: var(--color-primary); }
