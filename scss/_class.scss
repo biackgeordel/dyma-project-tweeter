@@ -1,0 +1,22 @@
+.btn {
+  border-radius: 2rem;
+}
+.nav-link a {
+  padding: 1.5rem 0;
+}
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  &:hover {
+    border-color: var(--color-primary-hover);
+    background-color: var(--color-primary-hover);
+  }
+}
+
+.card-header,
+.card-body {
+  padding: 1rem;
+}
+.title-principal {
+  text-align: center;
+}

@@ -1,0 +1,11 @@
+extends layout.pug 
+block content
+ .d-flex.justify-content-center.align-items-center.m-5.p-5
+   form.card(action="/app/create/new/tweet" method="post")
+     .card-header 
+        h1.title-principal Ecrire un tweet
+     .card-body.p-5
+       .card-group.p-2
+         textarea.form-control(name="content", cols="80", rows="6")
+       .w-100.p-2 
+         button.btn.btn-primary.btn-lg Envoyer

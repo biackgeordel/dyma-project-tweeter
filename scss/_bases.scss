@@ -1,6 +1,15 @@
 :root {
   font-size: 62.5%;
 }
-li {
+li,
+button,
+a,
+div,
+textarea,
+input {
   list-style: none;
+  font-size: 1.6rem !important;
+}
+form {
+  width: 40%;
 }
