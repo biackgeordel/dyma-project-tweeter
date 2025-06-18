@@ -1,4 +1,4 @@
-.btn {
+.btn-radius {
   border-radius: 2rem;
 }
 .nav-link a {
@@ -12,11 +12,66 @@
     background-color: var(--color-primary-hover);
   }
 }
+.navbar {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
 
 .card-header,
 .card-body {
   padding: 1rem;
 }
+.card-text {
+  // flex: 0 0 70%;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+  // white-space: nowrap;
+}
 .title-principal {
   text-align: center;
+}
+.content {
+  max-width: 1000px;
+  margin-top: 20px;
+}
+.profil-container {
+  width: 30%;
+  max-width: 300px;
+
+  .content-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    margin-top: 1rem;
+    overflow: hidden;
+    border: 5px solid #ecf0f1;
+
+    &:hover {
+      cursor: pointer;
+
+      img {
+        transform: scale(1.5);
+        transition: transform 0.5s ease-in-out;
+      }
+    }
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    clip-path: ellipse(50% 50%);
+    transition: transform 0.5s ease-in-out;
+  }
+  p {
+    color: #bdc3c7;
+  }
+}
+ul .card:nth-child(n) {
+  border: none;
+  border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color);
+  border-radius: 0;
+  padding: 2rem 0;
+}
+li:last-child > .card {
+  border: none;
 }

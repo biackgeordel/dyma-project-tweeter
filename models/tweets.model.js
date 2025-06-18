@@ -6,7 +6,7 @@ schemaTweet = new schema(
       type: String,
       required: [true, "Veuillez saisir une message"],
       minLength: [6, "le tweet doit avoir au moins 6 caractères"],
-      maxLength: [100, "le tweet doit avoir au max  100 caractères"],
+      maxLength: [300, "le tweet doit avoir au max  300 caractères"],
     },
   },
   { timestamps: true }

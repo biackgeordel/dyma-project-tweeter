@@ -1,26 +1,35 @@
 const express = require("express");
 const router = express.Router();
-const util = require("util");
-const ModelTweet = require("../models/tweets");
+const tweets = require("./tweet.routes");
+const users = require("./user.routes");
+const auth = require("./auth.routes");
+const passport = require("passport");
+const unsureAuthenticate = require("../controllers/gardes.controllers");
+
+router.use("/tweets", unsureAuthenticate, tweets);
+router.use("/users", users);
+router.use("/auth", auth);
+
 router.get("/", (req, res) => {
-  console.log(router);
+  res.redirect("/tweets");
+});
+// router.post("/login", (req, res, next) => {
+//   passport.authenticate("local", (error, user, info) => {
+//     console.log("user: ", req);
+//     if (error) next(error);
+//     if (!user) {
+//       body = req.body;
+//       res.render("users/connexion.pug", {
+//         errors: [info.message],
+//         body,
+//       });
+//     } else {
+//       req.logIn(user, (error) => {
+//         if (error) next(error);
+//         res.redirect("/");
+//       });
+//     }
+//   })(req, res, next);
+// });
 
-  res.render("index");
-});
-router.get("/tweet/new", (req, res) => {
-  res.render("tweet");
-});
-router.post("/create/new/tweet", async (req, res) => {
-  console.log(req.body);
-
-  ModelTweet.insertOne({ ...req.body })
-    .then((tweet) => {
-      console.log(tweet);
-      res.redirect("/");
-    })
-    .catch((error) => {
-      console.log(error.errors.content.message);
-      res.status(403).json({ error: error.errors.content.message });
-    });
-});
 module.exports = router;

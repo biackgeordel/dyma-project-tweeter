@@ -1,12 +1,18 @@
-nav(class="navbar navbar-expand-lg navbar-light bg-light")
+nav(class="navbar navbar-expand-lg navbar-light bg-white")
   a(class="navbar-brand" href="/")
      img(width="50" height="50" src="/images/twitter.png")
   button(class="navbar-toggler")
     span(class="navbar-toggler-icon")
   div(class="collapse navbar-collapse")
     ul(class="navbar-nav ms-auto align-items-baseline")
-      li(class="nav-item active")
-        a(class="nav-link"  href="/app/tweet/new")
-          input.btn.btn-primary.btn-lg.p-10(type="button", value="tweet")
-      li(class="nav-item")
-        a(class="nav-link" href="#") Connexion
+      if user 
+         li(class="nav-item active")
+           a(class="nav-link"  href="/tweets/new")
+             input.btn.btn-primary.btn-lg.p-10.btn-radius(type="button", value="tweet")
+         li(class="nav-item")
+           a(class="nav-link" href="/auth/signout") Deconnexion
+      else
+         li(class="nav-item")
+            a(class="nav-link" href="/users/signup/form") Inscription
+         li(class="nav-item")
+           a(class="nav-link" href="/auth/signin/form") Connexion

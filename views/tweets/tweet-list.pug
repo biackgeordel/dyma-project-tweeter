@@ -1,0 +1,9 @@
+extends ../layout.pug 
+block content 
+ div(class="d-flex flex-row content mx-auto d-block")
+   div(class="profil-container flex-fill bg-white")
+     include ../includes/profil.pug
+   div(class="flex-fill d-flex flex-column ")
+     include ../partiels/partiel.tweetList.pug
+ script(type="module", src="/javascripts/tweet.js") 
+    
