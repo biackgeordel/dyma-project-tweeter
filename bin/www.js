@@ -15,8 +15,12 @@ http
 https
   .createServer(
     {
-      cert: fs.readFileSync(path.join(__dirname, "../ssl/certificate.pem")),
-      key: fs.readFileSync(path.join(__dirname, "../ssl/private-key.pem")),
+      cert: fs.readFileSync(
+        path.join(__dirname, "../ssl/odilon-project.fr_ssl_certificate.cer")
+      ),
+      key: fs.readFileSync(
+        path.join(__dirname, "../ssl/_.odilon-project.fr_private_key.key")
+      ),
     },
     app
   )
