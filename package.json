@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": " nodemon bin/www.js && NODE_ENV=development",
-    "start:prod": "nodemon app.js && NODE_ENV=production",
+    "start:prod": "nodemon bin/www.js && NODE_ENV=production",
     "sass": "  sass --watch --style=compressed  scss/style.scss:css/style.css "
   },
   "author": "",
