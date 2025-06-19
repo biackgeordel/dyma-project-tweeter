@@ -1,5 +1,6 @@
 const passport = require("passport");
 exports.signinForm = (req, res, next) => {
+  res.end("fin");
   res.render("users/connexion.pug", { errors: null, body: {} });
 };
 exports.signin = (req, res, next) => {
