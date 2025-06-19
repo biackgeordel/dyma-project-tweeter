@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": " SET PORT=443&&nodemon bin/www.js&&NODE_ENV=development",
-    "start:prod": "SET PORT=80&&nodemon app.js&&NODE_ENV=production",
+    "start": " nodemon bin/www.js && NODE_ENV=development",
+    "start:prod": "nodemon app.js && NODE_ENV=production",
     "sass": "  sass --watch --style=compressed  scss/style.scss:css/style.css "
   },
   "author": "",
