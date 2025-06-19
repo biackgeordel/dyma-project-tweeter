@@ -2,7 +2,6 @@ const http = require("http");
 const https = require("https");
 const app = require("../app");
 const path = require("path");
-const port = process.env.PORT || 3000;
 fs = require("fs");
 http
   .createServer((req, res) => {
@@ -24,6 +23,6 @@ https
     },
     app
   )
-  .listen(port, () => {
-    console.log("server listen the port " + port);
+  .listen(443, () => {
+    console.log("server listen");
   });
