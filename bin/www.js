@@ -3,6 +3,7 @@ const https = require("https");
 const app = require("../app");
 const path = require("path");
 fs = require("fs");
+const env = require(`../environment/env.${process.env.NODE_ENV}.js`);
 http
   .createServer((req, res) => {
     res.writeHead(301, {
@@ -10,19 +11,16 @@ http
     });
     res.end();
   })
-  .listen(80);
+  .listen(env.port.http);
 https
   .createServer(
     {
-      cert: fs.readFileSync(
-        path.join(__dirname, "../ssl/odilon-project.fr_ssl_certificate.cer")
-      ),
-      key: fs.readFileSync(
-        path.join(__dirname, "../ssl/_.odilon-project.fr_private_key.key")
-      ),
+      cert: env.cert,
+
+      key: env.key,
     },
     app
   )
-  .listen(443, () => {
-    console.log("server listen");
+  .listen(env.port.https, () => {
+    console.log("server listen the port " + env.port.https);
   });
