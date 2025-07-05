@@ -11,7 +11,7 @@ module.exports = {
   ),
   env: "development",
   port: {
-    http: 3000,
+    http: 3003,
     https: 3001,
   },
 };

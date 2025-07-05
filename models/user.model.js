@@ -9,8 +9,10 @@ const UserSchema = Schema(
     },
     username: {
       type: String,
+      unique: [true, "le username doit être unique"],
       required: [true, "vous devez saisir un username"],
     },
+    following: [{ type: Schema.Types.ObjectId, ref: "users" }],
     local: {
       password: {
         type: String,
@@ -54,5 +56,5 @@ UserSchema.methods.comparePassword = function async(password) {
   }
 };
 
-const ModelUser = mongoose.model("user", UserSchema);
+const ModelUser = mongoose.model("users", UserSchema);
 module.exports = ModelUser;

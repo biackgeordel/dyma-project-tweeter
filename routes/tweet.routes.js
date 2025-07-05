@@ -6,11 +6,12 @@ const {
   tweetDelete,
   editTweet,
   modifyTweet,
+  tweetsUserandTweetFollower,
 } = require("../controllers/tweets.controllers");
 const router = express.Router();
 
 router.get("/edit/:tweetId", editTweet);
-router.get("/", tweetList);
+router.get("/", tweetsUserandTweetFollower);
 router.post("/", createTweet);
 router.post("/edit", modifyTweet);
 router.delete("/:tweetId", tweetDelete);

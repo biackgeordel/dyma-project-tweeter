@@ -4,13 +4,18 @@ const {
   getTweet,
   deleteTweet,
   modifierTweet,
+  getTweetsUserandTweetsFollowing,
 } = require("../queries/tweets.queries");
 exports.tweetList = async (req, res, next) => {
   const user = req.user;
   try {
     const tweets = await getTweets();
     if (tweets) {
-      res.render("tweets/tweet-list", { tweets, user });
+      res.render("tweets/tweet-list", {
+        tweets,
+        user,
+        isAuthenticated: req.isAuthenticated(),
+      });
     }
   } catch (error) {
     next(error);
@@ -27,7 +32,7 @@ exports.newTweet = (req, res, next) => {
 exports.createTweet = async (req, res, next) => {
   const user = req.user;
   try {
-    const tweet = await createTweet(req.body);
+    const tweet = await createTweet(req.body, { author: req.user._id });
     if (tweet) {
       res.redirect("/tweets");
     }
@@ -48,8 +53,14 @@ exports.tweetDelete = async (req, res, next) => {
     const id = req.params.tweetId;
     const tweetDelete = await deleteTweet(id);
     if (tweetDelete) {
-      const tweets = await getTweets();
-      res.render("partiels/partiel.tweetList.pug", { tweets, user });
+      const tweets = await getTweetsUserandTweetsFollowing(user);
+      if (tweets) {
+        res.render("partiels/partiel.tweetList.pug", {
+          tweets,
+          user,
+          isAuthenticated: req.isAuthenticated(),
+        });
+      }
     }
   } catch (error) {
     next(error);
@@ -87,5 +98,21 @@ exports.modifyTweet = async (req, res, next) => {
       content: { _id: req.query.id, ...req.body },
       user,
     });
+  }
+};
+exports.tweetsUserandTweetFollower = async (req, res, next) => {
+  const user = req.user;
+  try {
+    const tweets = await getTweetsUserandTweetsFollowing(user);
+    if (tweets) {
+      console.log("tweets :", tweets);
+      res.render("tweets/tweet-list", {
+        tweets,
+        user,
+        isAuthenticated: req.isAuthenticated(),
+      });
+    }
+  } catch (e) {
+    next(e);
   }
 };

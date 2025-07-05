@@ -7,6 +7,7 @@ const funcTweet = () => {
 
   const tabList = document.querySelectorAll("button");
   const nbreTweets = document.querySelector(".nbre-tweets");
+  let compteur = 0;
 
   console.log(tabList);
   tabList.forEach((button) => {
@@ -19,11 +20,12 @@ const funcTweet = () => {
           console.log(response);
           if (response.status === 200) {
             listTweet.innerHTML = response.data;
-            console.log("nbre :", listTweet.querySelectorAll("li").length);
-            nbreTweets.textContent =
-              listTweet.querySelectorAll("li").length !== 0
-                ? listTweet.querySelectorAll("li").length
-                : "-";
+            listTweet.querySelectorAll("li").forEach((el) => {
+              if (el.getAttribute("author") === nbreTweets.id) {
+                compteur += 1;
+              }
+            });
+            nbreTweets.textContent = compteur != 0 ? compteur : "-";
             return funcTweet();
           }
 

@@ -7,11 +7,15 @@ const env = require(`../environment/env.${process.env.NODE_ENV}.js`);
 http
   .createServer((req, res) => {
     res.writeHead(301, {
-      location: `https://${req.headers.host}${req.url}`,
+      location: `https://${req.headers.host.split(":")[0]}:${env.port.https}${
+        req.url
+      }`,
     });
     res.end();
   })
-  .listen(env.port.http);
+  .listen(env.port.http, () => {
+    console.log("listen " + env.port.http);
+  });
 https
   .createServer(
     {

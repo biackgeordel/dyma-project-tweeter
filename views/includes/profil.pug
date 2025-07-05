@@ -5,14 +5,15 @@ div(class="container-fluid  d-flex flex-column justify-content-center align-item
        form.w-100.my-3(action="/users/update/image/" method="POST" class="d-none" enctype="multipart/form-data" )
          input.form-control(type="file", name="profil")
     div(class=" my-3")
-      p(class="d-flex flex-row")=` ${user.username} (${user.local.email})`
+      p(class="d-flex flex-row" )=` ${user.username} (${user.local.email})`
     div(class="d-flex flex-row my-3 justify-content-center text-center w-100")
       div(class="flex-fill")
         p 
          strong Tweets
          br
          span
-             strong.nbre-tweets.text-primary=tweets && tweets.length? tweets.length:"-"
+          - let nbreTweets=tweets.filter(tweet=>tweet.author._id.toString()===user._id.toString()).length
+             strong(id=`${user._id}`).nbre-tweets.text-primary=`${nbreTweets!=0 ?nbreTweets :"-"}`
       div(class="flex-fill")
         p 
          strong Following

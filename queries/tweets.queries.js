@@ -1,7 +1,8 @@
 const ModelTweet = require("../models/tweets.model");
 
-exports.createTweet = (data) => {
-  return ModelTweet.insertOne(data);
+exports.createTweet = (data, author) => {
+  console.log(author);
+  return ModelTweet.insertOne({ ...data, ...author });
 };
 exports.getTweets = () => {
   return ModelTweet.find({});
@@ -19,4 +20,9 @@ exports.modifierTweet = (id, content) => {
     { $set: { content } },
     { new: true, runValidators: true }
   );
+};
+exports.getTweetsUserandTweetsFollowing = (user) => {
+  return ModelTweet.find({
+    author: { $in: [user._id, user.following] },
+  }).populate("author");
 };
