@@ -5,7 +5,7 @@ exports.createTweet = (data, author) => {
   return ModelTweet.insertOne({ ...data, ...author });
 };
 exports.getTweets = () => {
-  return ModelTweet.find({});
+  return ModelTweet.find({}).populate("author");
 };
 exports.deleteTweet = (id) => {
   return ModelTweet.findOneAndDelete({ _id: id });

@@ -13,11 +13,12 @@ div(class="container-fluid  d-flex flex-column justify-content-center align-item
          br
          span
           - let nbreTweets=tweets.filter(tweet=>tweet.author._id.toString()===user._id.toString()).length
-             strong(id=`${user._id}`).nbre-tweets.text-primary=`${nbreTweets!=0 ?nbreTweets :"-"}`
+             strong(id=`${user._id}`).nbre-tweets.text-primary=`${ nbreTweets && nbreTweets.length!=0 ?nbreTweets :"-"}`
+             p=user._id
       div(class="flex-fill")
         p 
          strong Following
          br
          span
-             strong.text-primary -
+             strong.text-primary=`${user.following && user.following.length ? user.following.length:"-"}` 
 script(type="module", src="/javascripts/profil.js")   

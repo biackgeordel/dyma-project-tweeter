@@ -70,8 +70,17 @@ ul .card:nth-child(n) {
   border: none;
   border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: 0;
-  padding: 2rem 0;
+  padding: 0.5rem 0;
 }
 li:last-child > .card {
   border: none;
+}
+.color-grey {
+  color: rgba(127, 140, 141, 1);
+  font-size: 1.3rem;
+}
+.title {
+  font-weight: 700;
+  color: rgba(44, 62, 80, 1);
+  text-transform: capitalize;
 }

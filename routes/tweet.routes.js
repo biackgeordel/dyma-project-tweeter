@@ -11,7 +11,7 @@ const {
 const router = express.Router();
 
 router.get("/edit/:tweetId", editTweet);
-router.get("/", tweetsUserandTweetFollower);
+router.get("/", tweetList);
 router.post("/", createTweet);
 router.post("/edit", modifyTweet);
 router.delete("/:tweetId", tweetDelete);

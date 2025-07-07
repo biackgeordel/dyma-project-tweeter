@@ -53,7 +53,7 @@ exports.tweetDelete = async (req, res, next) => {
     const id = req.params.tweetId;
     const tweetDelete = await deleteTweet(id);
     if (tweetDelete) {
-      const tweets = await getTweetsUserandTweetsFollowing(user);
+      const tweets = await getTweets();
       if (tweets) {
         res.render("partiels/partiel.tweetList.pug", {
           tweets,

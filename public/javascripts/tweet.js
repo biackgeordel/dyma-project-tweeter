@@ -13,6 +13,7 @@ const funcTweet = () => {
   tabList.forEach((button) => {
     button.addEventListener("click", async (e) => {
       const tweetid = e.currentTarget.getAttribute("tweetid");
+      const authorId = e.currentTarget.getAttribute("authorId");
       const action = e.currentTarget.dataset.text;
       switch (action) {
         case "delete":
@@ -31,7 +32,14 @@ const funcTweet = () => {
 
           break;
         case "edit":
-          location.href = "tweets/edit/" + tweetid;
+          location.href = "/tweets/edit/" + tweetid;
+          break;
+        case "follow":
+          location.href = "/users/follow/" + authorId;
+
+          break;
+        case "unfollow":
+          location.href = "/users/unfollow/" + authorId;
           break;
       }
     });

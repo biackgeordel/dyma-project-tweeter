@@ -4,12 +4,25 @@
         each tweet in tweets 
          li( author=tweet.author._id)
           div(class="card")
-             div(class="card-body  d-flex justify-content-between ")
-              div(class="card-text")=tweet.content
-              -if(tweet.author._id.toString()===user._id.toString())
-               div.d-flex
-                 button(tweetid=tweet._id data-text="delete").btn.btn-danger.m-2
-                   i(class="fas fa-trash-alt")
-                 button(tweetid=tweet._id data-text="edit").btn.btn-primary.m-2
-                   i(class="fas fa-edit")
-              
+             div(class="card-body  d-flex justify-content-between align-items-center")
+               div(class=" photo m-3 w-20 d-flex flex-column align-items-center")
+                 img(src=tweet.author.image style="width:50px;height:50px;border-radius:50%;object-fit:cover")
+                
+               div(class="card-text flex-fill d-flex flex-column")
+                  span(class="title")=tweet.author.username
+                  span(class="color-grey")=`Publié le ${tweet.createdAt.toLocaleDateString("fr-FR",{ weekday: "long",year: "numeric",month: "long",day: "numeric",}) }`
+                  p=tweet.content
+               -const userFollow=tweet.author.following.filter(follower=>follower.toString()===user._id.toString()) 
+               -if(tweet.author._id.toString()===user._id.toString())
+                 div.d-flex.w-30
+                   button(tweetid=tweet._id data-text="delete").btn.btn-danger.m-2
+                     i(class="fas fa-trash-alt")
+                   button(tweetid=tweet._id data-text="edit").btn.btn-primary.m-2
+                     i(class="fas fa-edit")
+               -if(user._id.toString()==userFollow[0] && user._id.toString()!==tweet.author._id.toString())
+                 p=userFollow[0]
+                 button(authorId=tweet.author._id data-text="unfollow").btn.btn-outline-info.m-2.
+                   Suivi(e)
+               -else if(user._id.toString()!==tweet.author._id.toString())
+                 button(authorId=tweet.author._id data-text="follow").btn.btn-outline-info.m-2.
+                   Suivre
